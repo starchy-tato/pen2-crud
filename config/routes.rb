@@ -5,4 +5,7 @@ Rails.application.routes.draw do
       resources :pens, only: [:index, :create, :destroy, :update]
     end
   end
+
+  root to: 'home#index'
+
 end
