@@ -1,6 +1,7 @@
 import React from 'react'
 
 class AllPens extends React.Component {
+  // helps creation of objects, here we set the state for this component
   constructor(props) {
     super(props);
     this.state = {
@@ -8,6 +9,7 @@ class AllPens extends React.Component {
     };
   }
 
+  // called after component is rendered in the DOM, during the mounting phase of react-life cycle
   componentDidMount() {
     fetch('/api/v1/pens.json')
       .then((res) => {return res.json()})
@@ -23,7 +25,7 @@ class AllPens extends React.Component {
         </div>
       )
     })
-    
+
     return(
       <div>
         {pens}
