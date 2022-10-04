@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Main = ( props ) => {
   return(
     <div>
@@ -5,3 +7,5 @@ const Main = ( props ) => {
     </div>
   )
 }
+
+export default Main
