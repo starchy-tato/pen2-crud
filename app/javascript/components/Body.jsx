@@ -9,6 +9,30 @@ class Body extends React.Component {
     this.state = {
       pens: []
     };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handleAddNewPen = this.handleAddNewPen.bind(this)
+  }
+
+  handleFormSubmit(name, description){
+    // console.log(name, description)
+    let body = JSON.stringify({ pen: { name: name, description: description } })
+
+    // POST request to backend with new pen data
+    fetch('http://localhost:3000/api/v1/pens', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body,
+    })
+      .then((res) => {return res.json()})
+      .then((pen) => {this.handleAddNewPen(pen)})
+  }
+
+  handleAddNewPen(pen){
+    this.setState({
+      pen: this.state.pens.concat(pen)
+    })
   }
 
   // called after component is rendered in the DOM, during the mounting phase of react-life cycle
@@ -21,7 +45,7 @@ class Body extends React.Component {
   render(){
     return(
       <div>
-        <NewPen />
+        <NewPen handleFormSubmit={this.handleFormSubmit} />
         <AllPens pens={this.state.pens} />
       </div>
     )
