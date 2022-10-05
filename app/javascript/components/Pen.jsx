@@ -6,6 +6,11 @@ class Pen extends React.Component{
       <div>
         <h1>{this.props.pen.name}</h1>
         <p>{this.props.pen.description}</p>
+        <button
+          onClick={() => this.props.handleDeletePen(this.props.pen.id)}
+        >
+          Delete
+        </button>
       </div>
     )
   }

@@ -6,7 +6,10 @@ const AllPens = ( props ) => {
   let pens = props.pens.map((pen) => {
     return(
       <div key={pen.id}>
-       <Pen pen={pen}/>
+       <Pen
+         pen={pen}
+         handleDeletePen={props.handleDeletePen}
+       />
       </div>
     )
   })
