@@ -15,7 +15,7 @@ class Api::V1::PensController < ApplicationController
   def update
     pen = Pen.find(params[:id])
     pen.update_attributes(pen_params)
-    render json: fruit
+    render json: pen
   end
 
   private
