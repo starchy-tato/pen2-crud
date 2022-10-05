@@ -1,5 +1,6 @@
 import React from 'react'
 import AllPens from "./AllPens";
+import NewPen from "./NewItem";
 
 class Body extends React.Component {
   // helps creation of objects, here we set the state for this component
@@ -20,6 +21,7 @@ class Body extends React.Component {
   render(){
     return(
       <div>
+        <NewPen />
         <AllPens pens={this.state.pens} />
       </div>
     )
