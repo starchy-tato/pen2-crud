@@ -13,6 +13,9 @@ class Body extends React.Component {
     this.handleAddNewPen = this.handleAddNewPen.bind(this)
     this.handleDeletePen = this.handleDeletePen.bind(this)
     this.deletePen = this.deletePen.bind(this)
+    this.handlePenUpdate = this.handlePenUpdate.bind(this)
+    this.updatePen = this.updatePen.bind(this)
+
   }
 
   // called after component is rendered in the DOM, during the mounting phase of react-life cycle
@@ -67,6 +70,27 @@ class Body extends React.Component {
     })
   }
 
+  handlePenUpdate(pen){
+    fetch(`http://localhost:3000/api/v1/pens/${pen.id}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify({pen: pen}),
+        headers: {
+          'Content-Type' : 'application/json'
+        }
+      })
+      .then((res) => {this.handlePenUpdate(pen)
+      })
+  }
+
+  updatePen(pen){
+    const newPens = this.state.pens.filter((item) => item.id !== pen.id)
+    newPens.push(pen)
+    this.setState({
+      pens: newPens
+    })
+  }
+
   render(){
     return(
       <div>
@@ -74,6 +98,7 @@ class Body extends React.Component {
         <AllPens
           pens={this.state.pens}
           handleDeletePen={this.handleDeletePen}
+          handlePenUpdate={this.handlePenUpdate}
         />
       </div>
     )
