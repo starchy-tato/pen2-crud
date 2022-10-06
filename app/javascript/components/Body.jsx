@@ -12,6 +12,7 @@ class Body extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleAddNewPen = this.handleAddNewPen.bind(this)
     this.handleDeletePen = this.handleDeletePen.bind(this)
+    this.deletePen = this.deletePen.bind(this)
   }
 
   // called after component is rendered in the DOM, during the mounting phase of react-life cycle
@@ -55,7 +56,14 @@ class Body extends React.Component {
           'Content-Type': 'application/json'
         }
       })
-      .then((res) => {console.log('Item was deleted!')
+      .then((res) => {this.deletePen
+    })
+  }
+
+  deletePen(id){
+    const newPens = this.state.pens.filter((pen) => pen.id !== id)
+    this.setState({
+      pens: newPens
     })
   }
 
