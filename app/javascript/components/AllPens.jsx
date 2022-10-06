@@ -9,6 +9,7 @@ const AllPens = ( props ) => {
        <Pen
          pen={pen}
          handleDeletePen={props.handleDeletePen}
+         handlePenUpdate={props.handlePenUpdate}
        />
       </div>
     )

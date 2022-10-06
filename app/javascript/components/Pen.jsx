@@ -12,6 +12,13 @@ class Pen extends React.Component{
 
   // state in this handler acts like a toggle
   handlePenEdit(){
+    if(this.state.editable){
+      let penName = this.name.value
+      let penDescription = this.description.value
+      let penId = this.props.pen.id
+      let pen = {id: penId, name: penName, description: penDescription}
+      this.props.handlePenUpdate(pen)
+    }
     this.setState({
       editable: !this.state.editable
     })
