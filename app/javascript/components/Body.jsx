@@ -79,7 +79,7 @@ class Body extends React.Component {
           'Content-Type' : 'application/json'
         }
       })
-      .then((res) => {this.handlePenUpdate(pen)
+      .then((res) => {this.updatePen(pen)
       })
   }
 
