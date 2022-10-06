@@ -10,10 +10,21 @@ class Pen extends React.Component{
   }
 
   render(){
+
+    let penName = this.state.editable ?
+      <input type='text' ref={input => this.name = input} defaultValue={this.props.pen.name} />
+      :
+      <h3>{this.props.pen.name}</h3>
+
+    let penDescription = this.state.editable ?
+      <input type='text' ref={input => this.description = input} defaultValue={this.props.pen.description} />
+      :
+      <p>{this.props.pen.description}</p>
+    
     return(
       <div>
-        <h1>{this.props.pen.name}</h1>
-        <p>{this.props.pen.description}</p>
+        <h1>{penName}</h1>
+        <p>{penDescription}</p>
         <button>{this.state.editable ? 'Submit' : 'Edit'}</button>
         <button
           onClick={() => this.props.handleDeletePen(this.props.pen.id)}
@@ -24,6 +35,5 @@ class Pen extends React.Component{
     )
   }
 }
-
 
 export default Pen
