@@ -1,12 +1,15 @@
 import React from 'react'
+import Pen from "./Pen";
 
 const AllPens = ( props ) => {
 
   let pens = props.pens.map((pen) => {
     return(
       <div key={pen.id}>
-        <h1>{pen.name}</h1>
-        <p>{pen.description}</p>
+       <Pen
+         pen={pen}
+         handleDeletePen={props.handleDeletePen}
+       />
       </div>
     )
   })

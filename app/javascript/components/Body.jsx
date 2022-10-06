@@ -11,6 +11,17 @@ class Body extends React.Component {
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.handleAddNewPen = this.handleAddNewPen.bind(this)
+    this.handleDeletePen = this.handleDeletePen.bind(this)
+    this.deletePen = this.deletePen.bind(this)
+  }
+
+  // called after component is rendered in the DOM, during the mounting phase of react-life cycle
+  componentDidMount() {
+    fetch('/api/v1/pens.json')
+      .then((res) => {return res.json()
+      })
+      .then((data) => {this.setState({ pens: data })
+      })
   }
 
   handleFormSubmit(name, description){
@@ -25,8 +36,10 @@ class Body extends React.Component {
       },
       body: body,
     })
-      .then((res) => {return res.json()})
-      .then((pen) => {this.handleAddNewPen(pen)})
+      .then((res) => {return res.json()
+      })
+      .then((pen) => {this.handleAddNewPen(pen)
+      })
   }
 
   handleAddNewPen(pen){
@@ -35,18 +48,33 @@ class Body extends React.Component {
     })
   }
 
-  // called after component is rendered in the DOM, during the mounting phase of react-life cycle
-  componentDidMount() {
-    fetch('/api/v1/pens.json')
-      .then((res) => {return res.json()})
-      .then((data) => {this.setState({ pens: data })});
+  handleDeletePen(id){
+    fetch(`http://localhost:3000/api/v1/pens/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {this.deletePen
+    })
+  }
+
+  deletePen(id){
+    const newPens = this.state.pens.filter((pen) => pen.id !== id)
+    this.setState({
+      pens: newPens
+    })
   }
 
   render(){
     return(
       <div>
         <NewPen handleFormSubmit={this.handleFormSubmit} />
-        <AllPens pens={this.state.pens} />
+        <AllPens
+          pens={this.state.pens}
+          handleDeletePen={this.handleDeletePen}
+        />
       </div>
     )
   }
