@@ -45,6 +45,8 @@ group :development, :test do
   gem 'ffaker', '~> 2.2'
   gem 'rails-controller-testing'
   gem 'listen'
+  # Ensures specs run from a clean db
+  gem 'database_cleaner'
 end
 
 group :test do
