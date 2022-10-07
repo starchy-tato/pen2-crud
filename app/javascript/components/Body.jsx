@@ -54,15 +54,12 @@ class Body extends React.Component {
   }
 
   handleDeletePen(id){
-    fetch(`http://localhost:3000/api/v1/pens/${id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    axios.delete(`http://localhost:3000/api/v1/pens/${id}`)
+      .then((res) => {
+        const penId = res.data.id
+        this.deletePen(penId)
       })
-      .then((res) => {this.deletePen
-    })
+
   }
 
   deletePen(id){
