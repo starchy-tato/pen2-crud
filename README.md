@@ -30,6 +30,10 @@
 - [ ] Research if any pen API's exist for searching
 - [ ] Adding a CSV or Execl import functionality
 - [ ] Adding toast messages to http requests for better user experience
+  - [ ] GET request
+  - [ ] PUT request
+  - [ ] DELTE request
+  - [ ] POST request
 
 
 
