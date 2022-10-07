@@ -1,6 +1,7 @@
 import React from 'react'
-import AllPens from "./AllPens";
-import NewPen from "./NewItem";
+import axios from 'axios'
+import AllPens from "./AllPens"
+import NewPen from "./NewItem"
 
 class Body extends React.Component {
   // helps creation of objects, here we set the state for this component
@@ -71,16 +72,9 @@ class Body extends React.Component {
   }
 
   handlePenUpdate(pen){
-    fetch(`http://localhost:3000/api/v1/pens/${pen.id}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify({pen: pen}),
-        headers: {
-          'Content-Type' : 'application/json'
-        }
-      })
-      .then((res) => {this.updatePen(pen)
-      })
+    axios.put(`http://localhost:3000/api/v1/pens/${pen.id}`,
+      {pen: pen})
+      .then(() => {this.updatePen(pen)})
   }
 
   updatePen(pen){
