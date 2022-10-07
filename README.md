@@ -5,7 +5,7 @@
 
 # To Do's
 
-- [ ] Add Tailwind
+- [x] Add Tailwind
   - [ ] Use border styling
 - [ ] Refactor fetch calls to axios
   - [ ] Error handling on requests
