@@ -8,7 +8,15 @@
 - [x] Add Tailwind
   - [ ] Use border styling
 - [ ] Refactor fetch calls to axios
-  - [ ] Error handling on requests
+  - [x] GET request
+  - [x] PUT request
+  - [x] DELTE request
+  - [ ] POST request
+- [ ] Error handling on requests
+  - [ ] GET request
+  - [ ] PUT request
+  - [ ] DELTE request
+  - [ ] POST request
 - [ ] Update to ES6 syntax if applicable
 - [ ] Add a PR template
 - [ ] Add tests
