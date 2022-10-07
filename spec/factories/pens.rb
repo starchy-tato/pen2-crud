@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :pen do
-    name { "MyString" }
-    description { "MyText" }
+    name { FFaker::Lorem.word }
+    description { FFaker::Lorem.sentence }
   end
 end
