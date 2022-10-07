@@ -21,11 +21,12 @@ class Body extends React.Component {
 
   // called after component is rendered in the DOM, during the mounting phase of react-life cycle
   componentDidMount() {
-    fetch('/api/v1/pens.json')
-      .then((res) => {return res.json()
-      })
-      .then((data) => {this.setState({ pens: data })
-      })
+    axios.get('/api/v1/pens.json')
+      .then((res) => {
+        const pens = res.data
+        this.setState({ pens })
+      }
+    )
   }
 
   handleFormSubmit(name, description){
