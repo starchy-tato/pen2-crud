@@ -10,12 +10,12 @@
 - [ ] Refactor fetch calls to axios
   - [x] GET request
   - [x] PUT request
-  - [x] DELTE request
+  - [x] DELETE request
   - [ ] POST request
 - [ ] Error handling on requests
   - [ ] GET request
   - [ ] PUT request
-  - [ ] DELTE request
+  - [ ] DELETE request
   - [ ] POST request
 - [ ] Update to ES6 syntax if applicable
 - [ ] Add a PR template
@@ -32,7 +32,7 @@
 - [ ] Adding toast messages to http requests for better user experience
   - [ ] GET request
   - [ ] PUT request
-  - [ ] DELTE request
+  - [ ] DELETE request
   - [ ] POST request
 
 
