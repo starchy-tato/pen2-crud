@@ -7,12 +7,12 @@
 
 - [x] Add Tailwind
   - [ ] Use border styling
-- [ ] Refactor fetch calls to axios
+- [x] Refactor fetch calls to axios
   - [x] GET request
   - [x] PUT request
   - [x] DELETE request
   - [x] POST request
-- [ ] Error handling on requests
+- [ ] Add Error handling on requests
   - [ ] GET request
   - [ ] PUT request
   - [ ] DELETE request
