@@ -11,7 +11,7 @@
   - [x] GET request
   - [x] PUT request
   - [x] DELETE request
-  - [ ] POST request
+  - [x] POST request
 - [ ] Error handling on requests
   - [ ] GET request
   - [ ] PUT request
