@@ -30,20 +30,12 @@ class Body extends React.Component {
   }
 
   handleFormSubmit(name, description){
-    // console.log(name, description)
-    let body = JSON.stringify({ pen: { name: name, description: description } })
+    let penData = { pen: { name: name, description: description } }
 
-    // POST request to backend with new pen data
-    fetch('http://localhost:3000/api/v1/pens', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: body,
-    })
-      .then((res) => {return res.json()
-      })
-      .then((pen) => {this.handleAddNewPen(pen)
+    axios.post('http://localhost:3000/api/v1/pens', penData)
+      .then((res) => {
+        const pen = res.data.id
+        this.handleAddNewPen(pen)
       })
   }
 
