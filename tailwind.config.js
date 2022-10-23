@@ -6,7 +6,8 @@ module.exports = {
     content: [
       './app/views/**/*.html.erb',
       './app/helpers/**/*.rb',
-      './app/javascript/**/*.js',
+      './app/javascript/**/*.{js,jsx,ts,tsx}',
+      "./app/**/*.{js,jsx,ts,tsx}",
     ],
   },
   content: [],
