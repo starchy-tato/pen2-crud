@@ -79,5 +79,6 @@ yarn-debug.log*
 /config/credentials/staging.key
 /config/master.key
 .idea/pen2-crud.iml
+.idea/dbnavigator.xml
 *.iml
 *.iml
