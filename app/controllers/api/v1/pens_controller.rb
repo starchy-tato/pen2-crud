@@ -4,8 +4,14 @@ class Api::V1::PensController < ApplicationController
   end
 
   def create
-    pen = Pen.create(pen_params)
-    render json: pen
+    @pen = Pen.new(pen_params)
+
+    if @pen.save
+      render json: @pen
+    else
+      render json: {error: 'Requires a name'}
+    end
+
   end
 
   def destroy
@@ -21,6 +27,6 @@ class Api::V1::PensController < ApplicationController
   private
 
   def pen_params
-    params.require(:pen).permit(:id, :name, :description)
+    params.require(:pen).permit( :name, :description)
   end
 end
