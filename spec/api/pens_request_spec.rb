@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe 'GET #index', :type => :request do
-  let!(:pen_one) { FactoryBot.create(:pen, name: 'Pilot Metropolitan', description: 'a classy fountain pen, with a fine nib' ) }
+describe 'GET /index', :type => :request do
+  let!(:pen_one) { FactoryBot.create(:pen, name: 'Pilot Metropolitan', description: 'a classy fountain pen, with a fine nib') }
   let!(:pen_two) { FactoryBot.create(:pen, name: 'Bic Ballpoint', description: 'kinda basic') }
 
-  before {get '/api/v1/pens'}
+  before { get '/api/v1/pens' }
 
-  it 'returns status code 200' do
+  it 'returns successful status' do
     expect(response).to have_http_status(:success)
   end
 
@@ -21,35 +21,34 @@ describe 'GET #index', :type => :request do
   end
 end
 
-describe 'POST #create', :type => :request do
-  before {get '/api/v1/pens'}
+describe 'POST /create', :type => :request do
+  let(:name) { 'Safari' }
+  let(:description) { 'vibrant colour' }
 
-  it 'returns a successful request' do
-    expect(response).to have_http_status(:success)
-  end
+  subject { post api_v1_pens_path, params: { pen: { name: name, description: description } } }
 
-  context 'it creates a new pen' do
-    let(:pen) { FactoryBot.create(:pen, name: 'Safari', description: 'vibrant colour') }
-
-    xit 'returns a new pen' do
-
-      json_response = JSON.parse(response.body)
-      #   expect a change in count
-      pp 'json res', json_response
-      expect(json_response).to change(Pen, :count).by(1)
+  context 'with valid params' do
+    it 'creates a new pen' do
+      expect { subject }.to change { Pen.count }.by(1)
+      pen = Pen.last
+      expect(pen.name).to eq("Safari")
+      expect(pen.description).to eq("vibrant colour")
     end
   end
 
+  context 'with invalid params' do
+    let(:name) { '' }
 
-  xit 'returns the created pen' do
-
+    it 'does not create a new pen' do
+      expect { subject }.not_to change {Pen.count}
+    end
   end
 end
 
-describe 'DELETE #destroy', :type => :request do
+describe 'DELETE /destroy', :type => :request do
 
 end
 
-describe 'PUT #update', :type => :request do
+describe 'PUT /update', :type => :request do
 
 end
