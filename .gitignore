@@ -82,3 +82,4 @@ yarn-debug.log*
 .idea/dbnavigator.xml
 *.iml
 *.iml
+.idea/pen2-crud.iml
