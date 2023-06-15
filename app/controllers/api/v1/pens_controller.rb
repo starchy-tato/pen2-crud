@@ -9,13 +9,14 @@ class Api::V1::PensController < ApplicationController
     if @pen.save
       render json: @pen
     else
-      render json: {error: 'Requires a name'}
+      render json: { error: 'Requires a name' }
     end
 
   end
 
   def destroy
     Pen.destroy(params[:id])
+    render json: { status: :ok }
   end
 
   def update
@@ -27,6 +28,6 @@ class Api::V1::PensController < ApplicationController
   private
 
   def pen_params
-    params.require(:pen).permit( :name, :description)
+    params.require(:pen).permit(:name, :description)
   end
 end

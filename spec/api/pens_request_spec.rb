@@ -46,9 +46,50 @@ describe 'POST /create', :type => :request do
 end
 
 describe 'DELETE /destroy', :type => :request do
+  let!(:pen) { FactoryBot.create(:pen, name: 'Zebra', description: 'Sparkling gel pen') }
 
+  subject { delete "/api/v1/pens/#{pen.id}", params: { pen: pen.id } }
+
+  context 'it deletes a pen successfully' do
+    it 'destroys the pen' do
+      expect {
+        subject
+      }.to change(Pen, :count).by(-1)
+    end
+
+    it 'returns a successful response' do
+      delete "/api/v1/pens/#{pen.id}"
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  # is this spec needed?
+  context 'it does not delete pen successfully' do
+    let!(:pen) { nil }
+
+    xit 'returns a not found response' do
+      delete "/api/v1/pens/#{pen.id}"
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end
 
 describe 'PUT /update', :type => :request do
+  let!(:pen){ FactoryBot.create(:pen, name: 'Muji', description: 'dependable and well known') }
+  let(:description) { 'perhaps a bit over hyped' }
 
+  subject { put api_v1_pen_path(pen.id), params: {pen: { description: description}} }
+
+  context 'it updates the pen description' do
+    it 'returns the updated pen description' do
+      expect {
+        subject
+        pen.reload
+      }.to change {pen.description}.to(description)
+
+      expect(response).to have_http_status(:ok)
+      json_response = JSON.parse(response.body)
+      expect(json_response['description']).to eq(description)
+    end
+  end
 end
